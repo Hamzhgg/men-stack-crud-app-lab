@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= book.title %></title>
+  </head>
+  <body>
+    <h1><%= book.title %></h1>
+    <% if (book.read) { %>
+        <p>You've already read this book!</p>
+    <% } else { %>
+        <p>You need to read this book, NOW!</p>
+    <% }; %>
+    <form action="/books/<%=book._id%>?_method=DELETE" method="POST">
+      <button type="submit">Delete <%= book.title %></button>
+    </form>
+    <a href="/books/<%= book._id %>/edit">Edit <%= book.title %></a>
+    <a href="/books">Back to Book Index</a>
+  </body>
+</html>
