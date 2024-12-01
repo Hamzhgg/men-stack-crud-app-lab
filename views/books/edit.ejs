@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit a Book</title>
+  </head>
+<body>
+    <h1>Edit <%= book.title %></h1>
+    <form action="/books/<%=book._id%>?_method=PUT" method="POST">
+        <label for="title">Book Title:</label>
+        <input type="text" name="title" id="title" />
+    
+        <label for="author">Author Name:</label>
+        <input type="text" name="author" id="author" />
+  
+        <label for="read">Read?</label>
+        <input type="checkbox" name="read" id="read" <% if (book.read) { %>checked<% }%> />
+    
+        <button type="submit">Update Book</button>
+    </form>
+    <a href="/books">Back to Book Index</a>
+</body>

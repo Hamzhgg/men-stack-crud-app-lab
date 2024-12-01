@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add a Book</title>
+  </head>
+  <body>
+    <h1>Add a New Book!</h1>
+    <a href="/books">Back to Book Index</a>
+    <form action="/books" method="POST">
+      <label for="title">Book Title:</label>
+      <input type="text" name="title" id="title" />
+  
+      <label for="author">Author Name:</label>
+      <input type="text" name="author" id="author" />
+
+      <label for="read">Read?</label>
+      <input type="checkbox" name="read" id="read" />
+  
+      <button type="submit">Add Book</button>
+    </form>
+  </body>
+</html>
