@@ -1,43 +1,29 @@
-// Import Modules
-require('dotenv').config();
 const express = require('express');
-const morgan = require('morgan');
 const methodOverride = require('method-override');
-
-// Database
-require('./config/database.js');
-
-const Book = require("./models/book.js");
+const connectDB = require('./config/database');
+const carsController = require('./controllers/cars');
+require('dotenv').config();
 
 const app = express();
 
-// Controllers
-const bookCtrl = require('./controllers/books.js');
-
 // Middleware
-app.use(morgan('dev'));
-
-app.use(express.urlencoded({ extended: false }));
-
+app.set('view engine', 'ejs');
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
+// Database connection
+connectDB();
+
 // Routes
-app.get('/', bookCtrl.index);
+app.get('/', (req, res) => res.render('index'));
+app.get('/cars', carsController.index);
+app.get('/cars/new', carsController.new);
+app.post('/cars', carsController.create);
+app.get('/cars/:id', carsController.show);
+app.get('/cars/:id/edit', carsController.edit);
+app.put('/cars/:id', carsController.update);
+app.delete('/cars/:id', carsController.destroy);
 
-app.get('/books', bookCtrl.bookIndex);
-
-app.get('/books/new', bookCtrl.bookNew);
-
-app.post('/books', bookCtrl.bookCreate);
-
-app.get('/books/:bookId', bookCtrl.bookShow);
-
-app.get('/books/:bookId/edit', bookCtrl.bookEdit);
-
-app.put('/books/:bookId', bookCtrl.bookUpdate);
-
-app.delete('/books/:bookId', bookCtrl.bookDelete);
-
-app.listen(3000, () => {
-  console.log('Listening on port 3000');
-});
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

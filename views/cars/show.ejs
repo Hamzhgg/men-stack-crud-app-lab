@@ -1,0 +1,11 @@
+<h1><%= car.make %> <%= car.model %></h1>
+<p><strong>Year:</strong> <%= car.year %></p>
+<p><strong>Price:</strong> $<%= car.price %></p>
+<% if (car.imageUrl) { %>
+  <img src="<%= car.imageUrl %>" alt="<%= car.make %>">
+<% } %>
+<a href="/cars">Back to Cars</a>
+<a href="/cars/<%= car._id %>/edit">Edit</a>
+<form action="/cars/<%= car._id %>?_method=DELETE" method="POST" style="display:inline;">
+  <button type="submit">Delete</button>
+</form>

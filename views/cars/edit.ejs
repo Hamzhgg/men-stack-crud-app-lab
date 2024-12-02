@@ -1,0 +1,9 @@
+<h1>Edit Car</h1>
+<form action="/cars/<%= car._id %>?_method=PUT" method="POST">
+  <label>Make: <input type="text" name="make" value="<%= car.make %>" required></label><br>
+  <label>Model: <input type="text" name="model" value="<%= car.model %>" required></label><br>
+  <label>Year: <input type="number" name="year" value="<%= car.year %>" required></label><br>
+  <label>Price: <input type="number" name="price" value="<%= car.price %>" required></label><br>
+  <label>Image URL: <input type="text" name="imageUrl" value="<%= car.imageUrl %>"></label><br>
+  <button type="submit">Update Car</button>
+</form>
